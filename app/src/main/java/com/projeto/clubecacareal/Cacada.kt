@@ -12,7 +12,8 @@ data class Cacada(
     var numCacadores: Long,
     var dataCacada: String,
     var localizacao: Long,
-    var id: Long = -1,
+    var regiaoCacaId: Long,
+    var id: Long = -1
 ) {
     fun toContentValues() : ContentValues {
         val values = ContentValues()
@@ -21,6 +22,7 @@ data class Cacada(
         values.put(CacadaDbTable.FIELD_NUM_CACADORES, numCacadores)
         values.put(CacadaDbTable.FIELD_DATA, dataCacada)
         values.put(CacadaDbTable.FIELD_LOCALIZACAO, localizacao)
+        values.put(CacadaDbTable.FIELD_REGIAO_ID, regiaoCacaId)
 
         return values
     }
