@@ -1,27 +1,45 @@
 package com.projeto.clubecacareal
 
 import android.content.ContentValues
-import com.projeto.clubecacareal.dbhandler.CacadaDbTable
-import java.util.*
 import android.database.Cursor
 import android.provider.BaseColumns
+import com.projeto.clubecacareal.dbhandler.CacadaDbTable
 import java.text.SimpleDateFormat
+import java.util.*
 
 data class Cacada(
-    var id: Long = -1,
-    var numCacadores: String,
-    var dataCacada: Date,
+
+    var numCacadores: Long,
+    var dataCacada: String,
     var localizacao: Long,
+    var id: Long = -1,
 ) {
     fun toContentValues() : ContentValues {
         val values = ContentValues()
 
 
         values.put(CacadaDbTable.FIELD_NUM_CACADORES, numCacadores)
-        values.put(CacadaDbTable.FIELD_DATA, dataCacada.toString())
+        values.put(CacadaDbTable.FIELD_DATA, dataCacada)
         values.put(CacadaDbTable.FIELD_LOCALIZACAO, localizacao)
 
         return values
+    }
+
+    companion object{
+        fun fromCursor(cursor: Cursor): Cacada{
+            val posId = cursor.getColumnIndex(BaseColumns._ID)
+            val posNumCacadores = cursor.getColumnIndex(CacadaDbTable.FIELD_NUM_CACADORES)
+            val posDataCacada = cursor.getColumnIndex(CacadaDbTable.FIELD_DATA)
+            val posLocalizacao = cursor.getColumnIndex(CacadaDbTable.FIELD_LOCALIZACAO)
+
+            val id = cursor.getLong(posId)
+            val numCacadores = cursor.getLong(posNumCacadores)
+            val dataCacada = cursor.getString(posDataCacada)
+            val localizacao = cursor.getLong(posLocalizacao)
+
+
+            return Cacada(numCacadores, dataCacada, localizacao, id)
+        }
     }
 
 }
