@@ -1,7 +1,11 @@
 package com.projeto.clubecacareal
 
 import android.content.ContentValues
+import com.projeto.clubecacareal.dbhandler.CacadaDbTable
 import java.util.*
+import android.database.Cursor
+import android.provider.BaseColumns
+import java.text.SimpleDateFormat
 
 data class Cacada(
     var id: Long = -1,
@@ -13,6 +17,11 @@ data class Cacada(
         val values = ContentValues()
 
 
+        values.put(CacadaDbTable.FIELD_NUM_CACADORES, numCacadores)
+        values.put(CacadaDbTable.FIELD_DATA, dataCacada.toString())
+        values.put(CacadaDbTable.FIELD_LOCALIZACAO, localizacao)
+
         return values
     }
+
 }

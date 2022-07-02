@@ -8,9 +8,9 @@ class CacadaDbOpenHelper(context: Context?) : SQLiteOpenHelper(context, NAME,nul
     override fun onCreate(db: SQLiteDatabase?) {
         requireNotNull(db)
 
-        //CacadasDbTable(db).create()
+        CacadaDbTable(db).create()
         //CacadoresDbTable(db).create()
-        //RegiaoCacaDbTable(db).create()
+        RegiaoCacaDbTable(db).create()
         //InscricaoCacaDbTable(db).create()
     }
 
