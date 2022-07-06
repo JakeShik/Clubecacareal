@@ -73,4 +73,26 @@ class CacadaDbTest {
 
         db.close()
     }
+
+    @Test
+    fun canUpdateRegiaoCaca(){
+        val db = getWritableDatabase()
+
+        val regiao = RegiaoCaca(885689,"Coelho Raivoso", 420)
+        insertRegiaoCaca(db, regiao)
+
+        regiao.localizacao = 55817
+        regiao.quantidadeAnimais = 421
+
+        val registosAlterados = RegiaoCacaDbTable(db).update(
+            regiao.toContentValues(),
+            "${RegiaoCacaDbTable.FIELD_ID}=?",
+            arrayOf("${regiao.id}")
+        )
+
+        assertEquals(1,registosAlterados)
+
+        db.close()
+
+    }
 }
