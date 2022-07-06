@@ -16,7 +16,7 @@ class RegiaoCacaDbTable(db: SQLiteDatabase) : DbTable(db, NAME) {
         const val FIELD_NOMEANIMAL = "nomeAnimal"
         const val FIELD_QUANTIDADEANIMAIS = "quantidadeAnimais"
 
-
+        const val FIELD_ID = "$NAME.${BaseColumns._ID}"
         val ALL_FIELDS = arrayOf(BaseColumns._ID, FIELD_LOCALIZACAO, FIELD_NOMEANIMAL, FIELD_QUANTIDADEANIMAIS)
     }
 }
