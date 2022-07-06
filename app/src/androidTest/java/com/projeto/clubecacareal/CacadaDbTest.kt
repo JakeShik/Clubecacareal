@@ -102,17 +102,17 @@ class CacadaDbTest {
         val regiao = RegiaoCaca(885689,"Coelho Raivoso", 420)
         insertRegiaoCaca(db, regiao)
 
-       // val regiao2 = RegiaoCaca(235669,"Cobra", 820)
-        //insertRegiaoCaca(db, regiao2)
+        val regiao2 = RegiaoCaca(235669,"Cobra", 820)
+        insertRegiaoCaca(db, regiao2)
 
         val cacada = Cacada(10,"25-05-1999",regiao)
         insertCacada(db, cacada)
 
 
         cacada.dataCacada="26-05-1999"
-        //cacada.numCacadores= 12
-       // regiao.quantidadeAnimais= 75
-        //regiao2.localizacao = 238816
+        cacada.numCacadores= 12
+        regiao.quantidadeAnimais= 75
+        regiao2.localizacao = 238816
 
         val registosAlterados = CacadaDbTable(db).update(
             cacada.toContentValues(),
@@ -120,15 +120,15 @@ class CacadaDbTest {
             arrayOf("${cacada.id}")
         )
 
-       /* val registos2Alterados = RegiaoCacaDbTable(db).update(
+        val registos2Alterados = RegiaoCacaDbTable(db).update(
             (regiao.toContentValues().also { regiao2.toContentValues() }),
             "${RegiaoCacaDbTable.FIELD_ID}=?",
             arrayOf("${regiao.id+regiao2.id}")
         )
 
 
-        assertEquals(1,registos2Alterados)*/
-        assertEquals(1,registosAlterados)
+
+        assertEquals(1,registosAlterados+registos2Alterados)
         db.close()
     }
 }
